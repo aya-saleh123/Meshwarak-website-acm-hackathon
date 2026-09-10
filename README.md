@@ -1,13 +1,12 @@
-# مشوارك · me4warak
+# مشوارك - Meshwarak
 
 **اعرف المطلوب قبل ما تروح.**
 
-An Arabic-first web app that tells someone in Egypt exactly what they need
-before they head out to a government office: which documents to bring, which
-office handles it, and what the route looks like — plus a community layer for
-keeping that information current.
+An Arabic-first web app built for people in Egypt that helps you know exactly what to prepare before visiting a government office — from the required documents and responsible office to the best route and location.
 
-Hackathon prototype. Frontend only, no backend, no accounts, no tracking.
+Meshwarak turns a complicated government errand into a clear, step-by-step plan, with a community layer that helps keep practical information up to date.
+
+Hackathon prototype — frontend only. No backend, no accounts, and no user tracking.
 
 ---
 
