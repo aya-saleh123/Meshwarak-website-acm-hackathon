@@ -1,0 +1,214 @@
+/* =============================================================================
+   Design tokens — transcribed from style.md (مشوارك palette & typography)
+   ============================================================================= */
+
+:root {
+  /* Brand — Nile / Teal */
+  --primary: #075e6b;
+  --primary-hover: #064f5a;
+  --primary-light: #dceff1;
+  --primary-faint: #eef7f8;
+  --deep-nile: #0a3e4a;
+  --deep-nile-dark: #0a2a35;
+  --deep-nile-2: #123e4a;
+
+  /* Surfaces — Egyptian / papyrus neutrals */
+  --papyrus: #f8f3ed;
+  --sand: #f2ede5;
+  --white: #ffffff;
+  --warm-white: #faf8f5;
+  --off-white: #f8f8f8;
+  --light-gray: #f0f0f0;
+
+  /* Typography colours */
+  --text-primary: #182024;
+  --text-heading: #0a3e4a;
+  --text-secondary: #59686d;
+  --text-muted: #7a878a;
+  --text-on-dark: #ffffff;
+
+  /* Borders */
+  --border: #dde3e3;
+  --border-light: #e9eded;
+  --border-teal: #bfdde0;
+  --border-gold: #e7d6b8;
+  --border-red: #f0c9cd;
+  --border-blue: #c8dfec;
+
+  /* Egyptian accents */
+  --gold: #c69c45;
+  --gold-light: #f7eedc;
+  --gold-soft: #f2e5cc;
+  --red: #c92a35;
+  --red-light: #f7e3e5;
+  --red-soft: #fbedef;
+  --family-teal: #2a8b8c;
+  --family-light: #dcefef;
+  --family-soft: #f0f9f8;
+  --blue: #2878a5;
+  --blue-light: #e4f0f7;
+  --blue-soft: #f1f8fb;
+
+  /* Status */
+  --success: #217a55;
+  --success-light: #e5f3ec;
+  --warning: #c88a1d;
+  --warning-light: #faf0da;
+  --info: #2878a5;
+  --info-light: #e4f0f7;
+  --error: #c92a35;
+  --error-light: #f7e3e5;
+
+  /* Category tones — resolved per data category (see categories.ts) */
+  --tone-teal-strong: var(--primary);
+  --tone-teal-bg: var(--primary-light);
+  --tone-teal-soft: var(--primary-faint);
+  --tone-teal-border: var(--border-teal);
+
+  --tone-gold-strong: var(--gold);
+  --tone-gold-bg: var(--gold-light);
+  --tone-gold-soft: #fdf9f1;
+  --tone-gold-border: var(--border-gold);
+
+  --tone-red-strong: var(--red);
+  --tone-red-bg: var(--red-light);
+  --tone-red-soft: var(--red-soft);
+  --tone-red-border: var(--border-red);
+
+  --tone-blue-strong: var(--blue);
+  --tone-blue-bg: var(--blue-light);
+  --tone-blue-soft: var(--blue-soft);
+  --tone-blue-border: var(--border-blue);
+
+  --tone-green-strong: var(--family-teal);
+  --tone-green-bg: var(--family-light);
+  --tone-green-soft: var(--family-soft);
+  --tone-green-border: #bfdedd;
+
+  /* Semantic surfaces */
+  --page-bg: var(--papyrus);
+  --surface: var(--white);
+  --surface-muted: var(--warm-white);
+  --surface-sand: var(--sand);
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --overlay: rgba(10, 42, 53, 0.45);
+
+  /* Typography */
+  --font-ar: 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+  --font-en: 'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+
+  --fs-display: clamp(2rem, 1.35rem + 2.6vw, 3rem);
+  --fs-h1: clamp(1.65rem, 1.25rem + 1.6vw, 2.25rem);
+  --fs-h2: clamp(1.3rem, 1.12rem + 0.8vw, 1.65rem);
+  --fs-h3: 1.125rem;
+  --fs-body: 1rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+
+  --lh-tight: 1.35;
+  --lh-body: 1.8;
+
+  /* Spacing */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+
+  /* Radii — consistent, restrained */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-pill: 999px;
+
+  /* Elevation */
+  --sh-xs: 0 1px 2px rgba(10, 42, 53, 0.05);
+  --sh-sm: 0 1px 3px rgba(10, 42, 53, 0.06), 0 1px 2px rgba(10, 42, 53, 0.04);
+  --sh-md: 0 4px 14px rgba(10, 42, 53, 0.07);
+  --sh-lg: 0 14px 36px rgba(10, 42, 53, 0.12);
+
+  --container: 1200px;
+  --header-h: 72px;
+
+  --ring: 0 0 0 3px rgba(7, 94, 107, 0.28);
+  --t-fast: 120ms ease;
+  --t-base: 180ms ease;
+}
+
+/* -------------------------------- dark mode --------------------------------
+   style.md defines the light palette; the dark scheme is derived from the same
+   Deep Nile family so the identity stays intact.
+   -------------------------------------------------------------------------- */
+
+:root[data-theme='dark'] {
+  --primary: #58b8c2;
+  --primary-hover: #74cbd3;
+  --primary-light: #103c48;
+  --primary-faint: #0e3541;
+
+  --papyrus: #08222c;
+  --sand: #0d3140;
+  --white: #0f3946;
+  --warm-white: #123e4a;
+  --off-white: #0f3643;
+  --light-gray: #164552;
+
+  --text-primary: #e7f0f1;
+  --text-heading: #f1f7f7;
+  --text-secondary: #a9c1c7;
+  --text-muted: #8ba4ab;
+
+  --border: #1e4d5a;
+  --border-light: #18414d;
+  --border-teal: #235c69;
+  --border-gold: #4d4029;
+  --border-red: #55292e;
+  --border-blue: #234d63;
+
+  --gold: #dcb877;
+  --gold-light: #33301f;
+  --gold-soft: #2b2a1c;
+  --red: #ef8a92;
+  --red-light: #3a2226;
+  --red-soft: #321f22;
+  --family-teal: #6cc4c4;
+  --family-light: #1c3f42;
+  --family-soft: #16373a;
+  --blue: #7dbde0;
+  --blue-light: #1b3c4e;
+  --blue-soft: #163544;
+
+  --success: #6cc296;
+  --success-light: #17362a;
+  --warning: #e0b25f;
+  --warning-light: #362d18;
+  --info: #7dbde0;
+  --info-light: #1b3c4e;
+  --error: #ef8a92;
+  --error-light: #3a2226;
+
+  --tone-gold-soft: #262619;
+  --tone-green-border: #2a5a5a;
+
+  --page-bg: var(--papyrus);
+  --surface: #0f3946;
+  --surface-muted: #103a48;
+  --surface-sand: #0d3140;
+  --header-bg: rgba(9, 42, 53, 0.92);
+  --overlay: rgba(3, 17, 22, 0.6);
+
+  --sh-xs: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --sh-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --sh-md: 0 4px 14px rgba(0, 0, 0, 0.34);
+  --sh-lg: 0 14px 36px rgba(0, 0, 0, 0.45);
+
+  --ring: 0 0 0 3px rgba(88, 184, 194, 0.35);
+
+  color-scheme: dark;
+}

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm *)",
+      "PowerShell(New-Item *)",
+      "PowerShell(npx tsc -b 2>&1 | Select-Object -First 60)",
+      "PowerShell(npx vite build 2>&1 | Select-Object -Last 30)",
+      "PowerShell(npm ls *)",
+      "PowerShell(npm install *)",
+      "PowerShell(node scripts/smoke.mjs 2>&1)",
+      "PowerShell(npx tsc -b --force 2>&1 | Select-Object -First 30)",
+      "PowerShell(npx tsc -b --force 2>&1 | Select-Object -First 20; node -e \"const fs=require\\('fs'\\);for\\(const f of ['src/pages/Services.tsx','src/pages/ServiceDetail.tsx']\\){const s=fs.readFileSync\\(f,'utf8'\\);const bad=s.match\\(/[ÂÙØâ]/g\\);console.log\\(f, bad?\\('BAD '+bad.length\\):'clean utf8'\\);}\")",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(npx vite build 2>&1 | Select-Object -First 12)",
+      "PowerShell(npx tsc -b --force 2>&1 | Select-Object -First 20)",
+      "PowerShell(npx tsc -b --force 2>&1 | Select-Object -First 20; npx vite build 2>&1 | Select-Object -First 12)",
+      "PowerShell(npx vite preview --port 4173 2>&1)"
+    ]
+  }
+}
