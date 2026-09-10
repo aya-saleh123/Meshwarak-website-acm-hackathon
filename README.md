@@ -116,56 +116,60 @@ Instead:
 
 ---
 
-## Arabic / RTL
+## Design
 
-- `<html lang="ar" dir="rtl">` by default; the language toggle rewrites both.
-- All layout CSS uses **logical properties** (`margin-inline`, `inset-inline-start`,
-  `border-start-start-radius`, …), so RTL and LTR share one stylesheet with no
-  mirrored overrides.
-- Directional icons flip via `.icon--flip`, scoped to `:root[dir='rtl']`.
-- Body line-height is 1.8 for Arabic and no `letter-spacing` is ever applied to
-  Arabic text.
-- **Arabic counting is done properly** (`src/lib/format.ts`): «مستند واحد»,
-  «مستندين», «5 مستندات», «11 مستند» — singular, dual, 3–10 plural, 11+
-  singular. Same for خدمات / نتائج / تصنيفات / مساهمات.
-- The UI chrome is bilingual (Arabic default, English toggle), but **service
-  content stays Arabic** — translating official document names would risk
-  changing their meaning. Dataset content carries `dir="rtl"` (`AR_CONTENT` in
-  `src/lib/format.ts`) so it still lays out correctly inside the English LTR
-  UI, and mixed strings use `dir="auto"`.
-- On desktop the information panel is on the **right** and the map on the
-  **left**, as specified for an RTL interface.
+Meshwarak follows a **simple, Arabic-first, and user-focused design approach**.
+
+### Arabic-First & RTL
+
+The interface is designed primarily for Arabic-speaking users, with:
+
+- Right-to-left layouts
+- Arabic-first typography
+- Simple and familiar language
+- Responsive layouts
+
+### Light & Dark Mode
+
+Meshwarak supports both **light mode and dark mode**, while maintaining the same visual identity and user experience.
+
+Both modes focus on:
+
+- Readability
+- Clear contrast
+- Consistent visual hierarchy
+- Comfortable use in different environments
+  
+![Meshwarak Website](docs/images/light_dark_mode.png)
+
+### Responsive Design
+
+The interface is designed to work across **desktop, tablet, and mobile** devices.
+
+### Design Principles
+
+- Simple over complicated
+- Information before decoration
+- Clear visual hierarchy
+- Mobile-friendly
+- Consistent components
+- Easy to understand
 
 ---
 
-## Design ٍٍSystem
+## Brand Identity
 
-`src/styles/tokens.css` is a direct transcription of `style.md`: Nile teal
-brand ramp, papyrus/sand backgrounds, Egyptian gold / red / blue / family-teal
-category accents, typography and border colours. Nothing outside that palette
-is used.
+Meshwarak's brand identity is inspired by **Egypt, the Nile, and the idea of making government-service journeys easier**.
 
-Category tones are applied with a single `data-tone` attribute that sets
-`--tone-strong` / `--tone-bg` / `--tone-soft` / `--tone-border` for everything
-nested inside it — following `style.md`'s mapping of gold to personal
-documents, red to travel, blue to traffic, and family teal to family services.
+The visual identity combines trust and professionalism with a friendly, modern digital experience.
 
-Dark mode is derived from the same Deep Nile family (`:root[data-theme='dark']`)
-and persists in `localStorage`.
+### Brand Principles
 
-The logo is used as supplied artwork, never re-created with a font. Four
-variants were cropped from `logo.jpeg` into `public/brand/`:
-
-| File                          | Used for                                   |
-| ----------------------------- | ------------------------------------------ |
-| `logo-wordmark.png`           | Header (tagline would be illegible at 40px) |
-| `logo-lockup.png`             | Footer + about page (includes the tagline)  |
-| `logo-wordmark-inverse.png`   | Header in dark mode                        |
-| `logo-lockup-inverse.png`     | Dark footer                                 |
-| `logo-mark.png`               | Favicon                                     |
-
-The gold hairline in `.eyebrow` and the faint gold dot field behind the hero
-echo the dashes in the wordmark — the only decorative flourishes in the app.
+- **Trustworthy** — clear and reliable information
+- **Approachable** — making government services feel less complicated
+- **Clear** — prioritizing the information users need
+- **Egyptian** — inspired by the Nile and the local context
+- **Modern** — a simple and contemporary digital experience
 
 ![Meshwarak Website](docs/images/brand_identity.png)
 
