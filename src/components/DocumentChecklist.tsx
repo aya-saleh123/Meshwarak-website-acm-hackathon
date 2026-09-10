@@ -3,17 +3,20 @@ import { Button } from './Button'
 import { Notice } from './Notice'
 import { useApp } from '../context/AppContext'
 import { useChecklist } from '../hooks/useChecklist'
-import { AR_CONTENT, countLabel } from '../lib/format'
+import { contentProps, countLabel, pick } from '../lib/format'
+import type { Lang } from '../i18n/strings'
 import type { Service, ServiceDocument } from '../lib/types'
 
 function CheckRow({
   document: doc,
   checked,
   onToggle,
+  lang,
 }: {
   document: ServiceDocument
   checked: boolean
   onToggle: () => void
+  lang: Lang
 }) {
   return (
     <li className="check-item" data-checked={checked}>
@@ -26,10 +29,10 @@ function CheckRow({
         <span className="check-item__box" aria-hidden="true">
           <Icon name="check" size={14} />
         </span>
-        <span {...AR_CONTENT}>
-          <span className="check-item__label">{doc.name}</span>
+        <span {...contentProps(lang)}>
+          <span className="check-item__label">{pick(doc.name, lang)}</span>
           {doc.details && (
-            <span className="check-item__details">{doc.details}</span>
+            <span className="check-item__details">{pick(doc.details, lang)}</span>
           )}
         </span>
       </button>
@@ -113,7 +116,7 @@ export function DocumentChecklist({ service }: { service: Service }) {
                     {stage.location ? (
                       <>
                         {' — '}
-                        <span {...AR_CONTENT}>{stage.location}</span>
+                        <span {...contentProps(lang)}>{pick(stage.location, lang)}</span>
                       </>
                     ) : null}
                   </span>
@@ -129,6 +132,7 @@ export function DocumentChecklist({ service }: { service: Service }) {
                         document={doc}
                         checked={Boolean(checked[doc.id])}
                         onToggle={() => toggle(doc.id)}
+                        lang={lang}
                       />
                     ))}
                   </ul>
@@ -144,6 +148,7 @@ export function DocumentChecklist({ service }: { service: Service }) {
                 document={doc}
                 checked={Boolean(checked[doc.id])}
                 onToggle={() => toggle(doc.id)}
+                lang={lang}
               />
             ))}
           </ul>

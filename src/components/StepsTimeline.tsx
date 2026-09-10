@@ -1,6 +1,7 @@
 import { Icon } from './Icon'
 import { useApp } from '../context/AppContext'
 import { buildJourney } from '../lib/journey'
+import { pick } from '../lib/format'
 import type { Service } from '../lib/types'
 
 export function StepsTimeline({ service }: { service: Service }) {
@@ -35,13 +36,9 @@ export function StepsTimeline({ service }: { service: Service }) {
               {/* Steps mix UI language with Arabic office names from the
                   dataset, so let the browser resolve direction per step. */}
               <div className="timeline__body" dir="auto">
-                <p className="timeline__title">
-                  {lang === 'ar' ? step.titleAr : step.titleEn}
-                </p>
-                {(lang === 'ar' ? step.detailAr : step.detailEn) && (
-                  <p className="timeline__detail">
-                    {lang === 'ar' ? step.detailAr : step.detailEn}
-                  </p>
+                <p className="timeline__title">{pick(step.title, lang)}</p>
+                {step.detail && (
+                  <p className="timeline__detail">{pick(step.detail, lang)}</p>
                 )}
               </div>
             </li>

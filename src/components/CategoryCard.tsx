@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Icon } from './Icon'
 import { useApp } from '../context/AppContext'
-import { countLabel } from '../lib/format'
+import { countLabel, pick } from '../lib/format'
 import type { CategoryMeta } from '../lib/types'
 
 export function CategoryCard({
@@ -12,8 +12,8 @@ export function CategoryCard({
   count: number
 }) {
   const { lang } = useApp()
-  const name = lang === 'ar' ? category.nameAr : category.nameEn
-  const hint = lang === 'ar' ? category.hintAr : category.hintEn
+  const name = pick(category.name, lang)
+  const hint = pick(category.hint, lang)
 
   return (
     <Link

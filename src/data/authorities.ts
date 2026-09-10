@@ -8,12 +8,16 @@
  * offices come straight from `steps[].location`, so this map is only a
  * fallback for single-stage services.
  */
-export const CATEGORY_AUTHORITY: Record<string, string[]> = {
-  'بطاقة الرقم القومي': ['السجل المدني'],
-  'الأحوال المدنية': ['مكتب الصحة'],
-  'جوازات السفر': ['مصلحة الجوازات والهجرة والجنسية'],
-  'رخص القيادة': ['وحدة المرور'],
-  'السيارات والمرور': ['وحدة المرور'],
+import type { Localized } from '../lib/types'
+
+export const CATEGORY_AUTHORITY: Record<string, Localized[]> = {
+  'بطاقة الرقم القومي': [{ ar: 'السجل المدني', en: 'Civil Registry' }],
+  'الأحوال المدنية': [{ ar: 'مكتب الصحة', en: 'Health Office' }],
+  'جوازات السفر': [
+    { ar: 'مصلحة الجوازات والهجرة والجنسية', en: 'Passports, Immigration and Nationality Authority' },
+  ],
+  'رخص القيادة': [{ ar: 'وحدة المرور', en: 'Traffic Unit' }],
+  'السيارات والمرور': [{ ar: 'وحدة المرور', en: 'Traffic Unit' }],
 }
 
 /**

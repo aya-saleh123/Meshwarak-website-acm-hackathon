@@ -6,8 +6,8 @@ import { btnClass } from './Button'
 import { useApp } from '../context/AppContext'
 import { findArea } from '../data/areas'
 import { formatDistance, haversineKm } from '../lib/distance'
-import { googleMapsSearchUrl, officeQuery, osmSearchUrl } from '../lib/links'
-import { AR_CONTENT } from '../lib/format'
+import { googleMapsSearchUrl, officeQuery } from '../lib/links'
+import { contentProps, pick } from '../lib/format'
 import type { Service } from '../lib/types'
 
 export function PlacePanel({ service }: { service: Service }) {
@@ -17,6 +17,24 @@ export function PlacePanel({ service }: { service: Service }) {
 
   return (
     <div className="stack stack-5">
+      {/* The area picker is the first thing people need in this tab, so it
+          leads — the same control the settings popover offers, front and
+          centre instead of tucked behind a gear icon. */}
+      <section className="panel-section" aria-labelledby="area-heading">
+        <div className="panel-section__head">
+          <span className="icon-tile icon-tile--sm" data-tone="gold" aria-hidden="true">
+            <Icon name="locate" size={18} />
+          </span>
+          <div>
+            <h2 id="area-heading">{t('place.chooseArea')}</h2>
+            <p>{t('place.privacy')}</p>
+          </div>
+        </div>
+        <div className="panel-section__body">
+          <AreaSelector />
+        </div>
+      </section>
+
       <section className="panel-section" aria-labelledby="place-heading">
         <div className="panel-section__head">
           <span className="icon-tile icon-tile--sm" data-tone="teal" aria-hidden="true">
@@ -34,8 +52,8 @@ export function PlacePanel({ service }: { service: Service }) {
             <div className="chips">
               {service.authorities.length ? (
                 service.authorities.map((authority) => (
-                  <Badge key={authority} tone={service.category.tone} dot>
-                    <span {...AR_CONTENT}>{authority}</span>
+                  <Badge key={authority.ar} tone={service.category.tone} dot>
+                    <span {...contentProps(lang)}>{pick(authority, lang)}</span>
                   </Badge>
                 ))
               ) : (
@@ -67,15 +85,15 @@ export function PlacePanel({ service }: { service: Service }) {
           )}
 
           {service.authorities.map((authority) => {
-            const query = officeQuery(authority, area)
+            const query = officeQuery(authority.ar, area)
             return (
-              <div className="stack stack-2" key={authority}>
+              <div className="stack stack-2" key={authority.ar}>
                 <span
                   className="text-xs text-muted"
                   style={{ fontWeight: 600 }}
-                  {...AR_CONTENT}
+                  {...contentProps(lang)}
                 >
-                  {authority}
+                  {pick(authority, lang)}
                 </span>
                 <div className="row row-wrap">
                   <a
@@ -86,15 +104,6 @@ export function PlacePanel({ service }: { service: Service }) {
                   >
                     <Icon name="pin" size={16} />
                     {t('place.directions')}
-                    <Icon name="external" size={14} />
-                  </a>
-                  <a
-                    className={btnClass('secondary', 'sm')}
-                    href={osmSearchUrl(query)}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                  >
-                    {t('place.searchOsm')}
                     <Icon name="external" size={14} />
                   </a>
                 </div>
@@ -109,21 +118,6 @@ export function PlacePanel({ service }: { service: Service }) {
               {t(geoState === 'denied' ? 'place.geoDenied' : 'place.geoError')}
             </Notice>
           )}
-        </div>
-      </section>
-
-      <section className="panel-section" aria-labelledby="area-heading">
-        <div className="panel-section__head">
-          <span className="icon-tile icon-tile--sm" data-tone="gold" aria-hidden="true">
-            <Icon name="locate" size={18} />
-          </span>
-          <div>
-            <h2 id="area-heading">{t('place.chooseArea')}</h2>
-            <p>{t('place.privacy')}</p>
-          </div>
-        </div>
-        <div className="panel-section__body">
-          <AreaSelector />
         </div>
       </section>
     </div>

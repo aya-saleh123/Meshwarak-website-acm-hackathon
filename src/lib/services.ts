@@ -5,7 +5,9 @@ import { CATEGORIES, fallbackCategory } from '../data/categories'
 import { CATEGORY_AUTHORITY, SEARCH_ALIASES } from '../data/authorities'
 import type {
   CategoryMeta,
+  Localized,
   RawDataset,
+  RawDocument,
   RawService,
   Service,
   ServiceDocument,
@@ -16,18 +18,29 @@ const raw = dataset as RawDataset
 
 /* ------------------------------ normalisation ----------------------------- */
 
-function categoryFor(name: string): CategoryMeta {
-  return CATEGORIES.find((c) => c.id === name) ?? fallbackCategory(name)
+/** Builds a `Localized` pair, falling back the English side to Arabic when absent. */
+function localize(ar: string, en?: string): Localized {
+  return { ar, en: en ?? ar }
 }
 
-function toDocuments(
-  stageId: string,
-  docs: { name: string; details?: string }[] | undefined,
-): ServiceDocument[] {
+function localizeOpt(ar: string | undefined, en?: string): Localized | undefined {
+  return ar ? localize(ar, en) : undefined
+}
+
+/** Zips parallel `x` / `x_en` arrays from the dataset into `Localized[]`. */
+function localizeList(ar: string[] | undefined, en: string[] | undefined): Localized[] {
+  return (ar ?? []).map((value, index) => localize(value, en?.[index]))
+}
+
+function categoryFor(name: string, nameEn?: string): CategoryMeta {
+  return CATEGORIES.find((c) => c.id === name) ?? fallbackCategory(name, nameEn)
+}
+
+function toDocuments(stageId: string, docs: RawDocument[] | undefined): ServiceDocument[] {
   return (docs ?? []).map((doc, index) => ({
     id: `${stageId}:${index}`,
-    name: doc.name,
-    details: doc.details,
+    name: localize(doc.name, doc.name_en),
+    details: localizeOpt(doc.details, doc.details_en),
   }))
 }
 
@@ -37,9 +50,9 @@ function toStages(service: RawService): Stage[] {
       const id = `${service.id}:stage-${index + 1}`
       return {
         id,
-        location: step.location,
+        location: localizeOpt(step.location, step.location_en),
         documents: toDocuments(id, step.documents),
-        requirements: step.requirements ?? [],
+        requirements: localizeList(step.requirements, step.requirements_en),
       }
     })
   }
@@ -49,17 +62,17 @@ function toStages(service: RawService): Stage[] {
     {
       id,
       documents: toDocuments(id, service.documents),
-      requirements: service.requirements ?? [],
+      requirements: localizeList(service.requirements, service.requirements_en),
     },
   ]
 }
 
-function authoritiesFor(service: RawService, stages: Stage[]): string[] {
+function authoritiesFor(service: RawService, stages: Stage[]): Localized[] {
   const fromStages = stages
     .map((stage) => stage.location)
-    .filter((value): value is string => Boolean(value))
+    .filter((value): value is Localized => Boolean(value))
 
-  if (fromStages.length) return [...new Set(fromStages)]
+  if (fromStages.length) return [...new Map(fromStages.map((a) => [a.ar, a])).values()]
   return CATEGORY_AUTHORITY[service.category] ?? []
 }
 
@@ -70,21 +83,29 @@ function normalise(service: RawService): Service {
     service.additional_documents ?? []
   ).map((item, index) => ({
     id: `${service.id}:conditional-${index}`,
-    name: item.document,
-    condition: item.condition,
+    name: localize(item.document, item.document_en),
+    condition: localizeOpt(item.condition, item.condition_en),
   }))
 
   const authorities = authoritiesFor(service, stages)
   const requirements = stages.flatMap((stage) => stage.requirements)
+  const notes = localizeList(service.notes, service.notes_en)
 
   const searchIndex = [
     service.name,
+    service.name_en ?? '',
     service.category,
-    ...authorities,
-    ...documents.flatMap((doc) => [doc.name, doc.details ?? '']),
-    ...conditionalDocuments.flatMap((doc) => [doc.name, doc.condition ?? '']),
-    ...requirements,
-    ...(service.notes ?? []),
+    service.category_en ?? '',
+    ...authorities.flatMap((a) => [a.ar, a.en]),
+    ...documents.flatMap((doc) => [doc.name.ar, doc.name.en, doc.details?.ar ?? '', doc.details?.en ?? '']),
+    ...conditionalDocuments.flatMap((doc) => [
+      doc.name.ar,
+      doc.name.en,
+      doc.condition?.ar ?? '',
+      doc.condition?.en ?? '',
+    ]),
+    ...requirements.flatMap((r) => [r.ar, r.en]),
+    ...notes.flatMap((n) => [n.ar, n.en]),
     ...(SEARCH_ALIASES[service.id] ?? []),
   ]
     .join(' ')
@@ -92,14 +113,14 @@ function normalise(service: RawService): Service {
 
   return {
     id: service.id,
-    name: service.name,
-    category: categoryFor(service.category),
+    name: localize(service.name, service.name_en),
+    category: categoryFor(service.category, service.category_en),
     authorities,
     stages,
     documents,
     conditionalDocuments,
     requirements,
-    notes: service.notes ?? [],
+    notes,
     isMultiStage: stages.length > 1,
     searchIndex: normaliseArabic(searchIndex),
   }

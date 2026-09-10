@@ -1,11 +1,19 @@
 import type { Lang } from '../i18n/strings'
+import type { Localized } from './types'
+
+/** Reads the field matching the current UI language out of a `Localized` value. */
+export function pick(value: Localized, lang: Lang): string {
+  return lang === 'ar' ? value.ar : value.en
+}
 
 /**
- * Spread onto any element that renders content straight from data.json.
- * The dataset is Arabic, so it must stay RTL even while the UI chrome is in
- * English — otherwise document names and office names lay out wrongly.
+ * Spread onto any element that renders a `Localized` value picked for the
+ * current language, so document names and office names lay out correctly
+ * regardless of which language the surrounding UI chrome is in.
  */
-export const AR_CONTENT = { lang: 'ar', dir: 'rtl' } as const
+export function contentProps(lang: Lang) {
+  return lang === 'ar' ? ({ lang: 'ar', dir: 'rtl' } as const) : ({ lang: 'en', dir: 'ltr' } as const)
+}
 
 /**
  * Arabic counting is not "n + singular". It needs the dual form and the 3–10

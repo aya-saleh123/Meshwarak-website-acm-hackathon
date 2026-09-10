@@ -1,0 +1,587 @@
+{
+  "_source": "Structured from missingdata.md. Indicative figures supplied with the project — not guaranteed official rates. Every surface that renders this data carries a 'verify before you visit' qualifier.",
+  "_shape": "offices[] = opening hours per authority. feeSets[] = reusable fee tables referenced by services[].feeSetId. services[] = per-service fees, timing, deadlines and steps.",
+
+  "offices": [
+    {
+      "id": "civil_registry",
+      "name": "السجل المدني",
+      "name_en": "Civil Registry",
+      "schedules": [
+        {
+          "id": "standard",
+          "label": "المكاتب الحكومية — الفترة الصباحية",
+          "label_en": "Government offices — morning shift",
+          "days": "الأحد – الخميس",
+          "days_en": "Sunday – Thursday",
+          "hours": "8:00 ص – 2:00 / 2:30 م",
+          "hours_en": "8:00 AM – 2:00 / 2:30 PM",
+          "note": "بعض الفروع الكبرى تعمل السبت كذلك.",
+          "note_en": "Some larger branches open on Saturday as well."
+        },
+        {
+          "id": "evening",
+          "label": "الفترة المسائية — فروع محددة",
+          "label_en": "Evening shift — selected branches",
+          "days": "حسب الفرع",
+          "days_en": "Varies by branch",
+          "hours": "2:30 م – 9:00 م",
+          "hours_en": "2:30 PM – 9:00 PM"
+        },
+        {
+          "id": "mall",
+          "label": "مكاتب المولات التجارية",
+          "label_en": "Shopping-mall branches",
+          "days": "طوال أيام الأسبوع، بما فيها الجمعة والسبت",
+          "days_en": "Every day, including Friday and Saturday",
+          "hours": "10:00 ص – 9:00 م",
+          "hours_en": "10:00 AM – 9:00 PM",
+          "note": "مثل سيتي ستارز، مول العرب، كارفور، ومول مصر.",
+          "note_en": "For example City Stars, Mall of Arabia, Carrefour and Mall of Egypt."
+        }
+      ]
+    },
+    {
+      "id": "passport_office",
+      "name": "مصلحة الجوازات والهجرة والجنسية",
+      "name_en": "Passports, Immigration and Nationality Authority",
+      "schedules": [
+        {
+          "id": "standard",
+          "label": "المواعيد الرسمية",
+          "label_en": "Official hours",
+          "days": "السبت – الخميس (الجمعة إجازة رسمية)",
+          "days_en": "Saturday – Thursday (Friday is an official holiday)",
+          "hours": "8:00 ص – 2:30 م",
+          "hours_en": "8:00 AM – 2:30 PM"
+        },
+        {
+          "id": "extended",
+          "label": "المكاتب المطورة والمراكز المتميزة",
+          "label_en": "Upgraded offices and premium centres",
+          "days": "حسب الفرع",
+          "days_en": "Varies by branch",
+          "hours": "تمتد حتى 6:00 أو 9:00 م",
+          "hours_en": "Extended until 6:00 or 9:00 PM",
+          "note": "بعض المكاتب داخل المولات التجارية.",
+          "note_en": "Some branches located inside shopping malls."
+        }
+      ]
+    },
+    {
+      "id": "traffic_unit",
+      "name": "وحدة المرور",
+      "name_en": "Traffic Unit",
+      "schedules": [
+        {
+          "id": "standard",
+          "label": "المواعيد الرسمية",
+          "label_en": "Official hours",
+          "days": "السبت – الخميس (الجمعة إجازة رسمية)",
+          "days_en": "Saturday – Thursday (Friday is an official holiday)",
+          "hours": "8:00 ص – 2:00 / 3:00 م",
+          "hours_en": "8:00 AM – 2:00 / 3:00 PM",
+          "note": "يُفضّل الحضور 8:00 صباحاً بالظبط لتفادي طابور الكشف الطبي وتأمين دور مبكر في اختبارات القيادة.",
+          "note_en": "Arriving at 8:00 AM sharp avoids the medical-exam queue and secures an early driving-test slot."
+        }
+      ]
+    },
+    {
+      "id": "health_office",
+      "name": "مكتب الصحة",
+      "name_en": "Health Office",
+      "schedules": [
+        {
+          "id": "standard",
+          "label": "المواعيد الرسمية",
+          "label_en": "Official hours",
+          "days": "طوال أيام الأسبوع ما عدا الجمعة والإجازات الرسمية",
+          "days_en": "Every day except Friday and official holidays",
+          "hours": "8:00 ص – 2:00 م",
+          "hours_en": "8:00 AM – 2:00 PM"
+        }
+      ]
+    },
+    {
+      "id": "real_estate_registry",
+      "name": "الشهر العقاري",
+      "name_en": "Real Estate Registry",
+      "schedules": [
+        {
+          "id": "standard",
+          "label": "المواعيد الرسمية",
+          "label_en": "Official hours",
+          "days": "حسب الفرع",
+          "days_en": "Varies by branch",
+          "hours": "9:00 ص – 4:00 م",
+          "hours_en": "9:00 AM – 4:00 PM"
+        }
+      ]
+    }
+  ],
+
+  "feeSets": [
+    {
+      "id": "national_id_forms",
+      "kind": "tiers",
+      "title": "فئات الاستمارة ومدة الاستلام",
+      "title_en": "Form tiers and collection time",
+      "tiers": [
+        {
+          "id": "instant",
+          "name": "الفئة الفورية",
+          "name_en": "Instant tier",
+          "fee": "800 جنيه",
+          "fee_en": "EGP 800",
+          "delivery": "تُسلَّم فوراً في نفس اللحظة",
+          "delivery_en": "Issued immediately, on the spot",
+          "note": "بالسيارات النموذجية والمراكز المتميزة.",
+          "note_en": "At mobile service vehicles and premium centres."
+        },
+        {
+          "id": "vip",
+          "name": "فئة VIP إكسبريس",
+          "name_en": "VIP Express tier",
+          "fee": "515 جنيه",
+          "fee_en": "EGP 515",
+          "delivery": "من 30 دقيقة إلى ساعتين",
+          "delivery_en": "30 minutes to 2 hours"
+        },
+        {
+          "id": "special",
+          "name": "الفئة الخاصة",
+          "name_en": "Special tier",
+          "fee": "175 جنيه",
+          "fee_en": "EGP 175",
+          "delivery": "خلال 24 ساعة",
+          "delivery_en": "Within 24 hours"
+        },
+        {
+          "id": "urgent",
+          "name": "الفئة العاجلة",
+          "name_en": "Urgent tier",
+          "fee": "125 جنيه",
+          "fee_en": "EGP 125",
+          "delivery": "بعد 3 أيام",
+          "delivery_en": "After 3 days"
+        },
+        {
+          "id": "regular",
+          "name": "الفئة العادية",
+          "name_en": "Regular tier",
+          "fee": "50 جنيه",
+          "fee_en": "EGP 50",
+          "delivery": "بعد 15 يوماً",
+          "delivery_en": "After 15 days"
+        }
+      ],
+      "notes": [
+        "سعر الاستمارة واحد في استخراج البطاقة لأول مرة، والتجديد، وبدل الفاقد أو التالف.",
+        "قد تُضاف غرامات تأخير إدارية لو اتأخرت عن تحديث البيانات أو تجديد بطاقة منتهية بعد المهلة القانونية."
+      ],
+      "notes_en": [
+        "The form price is the same whether you are issuing a card for the first time, renewing it, or replacing a lost or damaged one.",
+        "Administrative late fines may be added if you delay updating your data or renewing an expired card beyond the legal grace period."
+      ]
+    },
+    {
+      "id": "passport_issue",
+      "kind": "tiers",
+      "title": "فئات الاستخراج والتجديد",
+      "title_en": "Issuing and renewal tiers",
+      "tiers": [
+        {
+          "id": "regular",
+          "name": "الجواز العادي",
+          "name_en": "Regular passport",
+          "fee": "حوالي 1,110 جنيه",
+          "fee_en": "About EGP 1,110",
+          "delivery": "من 3 إلى 7 أيام عمل",
+          "delivery_en": "3 to 7 working days"
+        },
+        {
+          "id": "expedited",
+          "name": "الجواز المستعجل",
+          "name_en": "Expedited passport",
+          "fee": "حوالي 1,300 جنيه",
+          "fee_en": "About EGP 1,300",
+          "delivery": "خلال يومي عمل",
+          "delivery_en": "Within 2 working days"
+        },
+        {
+          "id": "instant",
+          "name": "الجواز الفوري",
+          "name_en": "Instant passport",
+          "fee": "حوالي 1,600 جنيه",
+          "fee_en": "About EGP 1,600",
+          "delivery": "في نفس اليوم أو خلال 24 ساعة",
+          "delivery_en": "Same day or within 24 hours"
+        }
+      ],
+      "notes": [
+        "الأسعار قد تختلف بنسب بسيطة مع رسوم المراكز المتميزة بالمولات وفئة VIP.",
+        "المهنة تُحدَّد على أساس أوراق إثبات المهنة أو المؤهل المدرج في بطاقة الرقم القومي."
+      ],
+      "notes_en": [
+        "Prices may vary slightly with the surcharges of premium mall centres and the VIP tier.",
+        "Your profession is recorded from your proof-of-profession papers or from the qualification listed on your national ID card."
+      ]
+    },
+    {
+      "id": "passport_lost",
+      "kind": "tiers",
+      "title": "فئات بدل الفاقد",
+      "title_en": "Replacement tiers",
+      "tiers": [
+        {
+          "id": "regular",
+          "name": "بدل فاقد عادي",
+          "name_en": "Regular replacement",
+          "fee": "حوالي 1,385 – 1,450 جنيه",
+          "fee_en": "About EGP 1,385 – 1,450",
+          "delivery": "من 3 إلى 7 أيام عمل",
+          "delivery_en": "3 to 7 working days"
+        },
+        {
+          "id": "expedited",
+          "name": "بدل فاقد مستعجل",
+          "name_en": "Expedited replacement",
+          "fee": "حوالي 1,725 جنيه",
+          "fee_en": "About EGP 1,725",
+          "delivery": "خلال 24 إلى 48 ساعة",
+          "delivery_en": "Within 24 to 48 hours"
+        },
+        {
+          "id": "instant",
+          "name": "بدل فاقد فوري (VIP)",
+          "name_en": "Instant replacement (VIP)",
+          "fee": "من 2,450 إلى 2,950 جنيه",
+          "fee_en": "EGP 2,450 to 2,950",
+          "delivery": "في نفس اليوم",
+          "delivery_en": "Same day",
+          "note": "من مقر الإدارة العامة بالعباسية أو الفروع المتميزة بالمولات.",
+          "note_en": "From the head office in Abbasiya or premium mall branches."
+        }
+      ]
+    },
+    {
+      "id": "driving_license_first",
+      "kind": "breakdown",
+      "title": "تفصيل الرسوم",
+      "title_en": "Fee breakdown",
+      "total": "من 1,140 إلى 1,500 جنيه تقريباً",
+      "total_en": "Roughly EGP 1,140 to 1,500",
+      "items": [
+        {
+          "name": "الضريبة والتأمين الإجمالي",
+          "name_en": "Tax and total insurance",
+          "fee": "615 جنيه",
+          "fee_en": "EGP 615"
+        },
+        {
+          "name": "الكشف الطبي وتحليل فصيلة الدم",
+          "name_en": "Medical examination and blood-type test",
+          "fee": "285 جنيه",
+          "fee_en": "EGP 285"
+        },
+        {
+          "name": "نموذج 256 واستمارة البيانات",
+          "name_en": "Form 256 and the data form",
+          "fee": "150 جنيه",
+          "fee_en": "EGP 150"
+        },
+        {
+          "name": "الملف، حافظة الرخصة، طابع الشرطة، واختبار الإشارات",
+          "name_en": "File, licence wallet, police stamp and signals test",
+          "fee": "90 جنيه",
+          "fee_en": "EGP 90"
+        }
+      ],
+      "notes": [
+        "قد تزيد قليلاً حسب المحافظة والخدمات الإضافية زي حافظة الجلد أو التصوير.",
+        "الاستخراج لأول مرة بيتضمن رسوم مدرسة التعليم والتثقيف المروري واختبارات القيادة الإلزامية."
+      ],
+      "notes_en": [
+        "May be slightly higher depending on the governorate and extras such as a leather wallet or photographs.",
+        "First-time issuance includes the traffic education school fees and the mandatory driving tests."
+      ]
+    },
+    {
+      "id": "driving_license_renewal",
+      "kind": "breakdown",
+      "title": "رسوم معروفة عندنا",
+      "title_en": "Fees we have",
+      "items": [
+        {
+          "name": "استخراج شهادة المخالفات",
+          "name_en": "Issuing the violations certificate",
+          "fee": "50 جنيه",
+          "fee_en": "EGP 50"
+        },
+        {
+          "name": "قيمة المخالفات المرورية",
+          "name_en": "Value of any traffic violations",
+          "fee": "حسب المخالفات إن وُجدت",
+          "fee_en": "Depends on your violations, if any"
+        }
+      ]
+    },
+    {
+      "id": "newborn_registration",
+      "kind": "free",
+      "title": "الرسوم",
+      "title_en": "Fees",
+      "items": [
+        {
+          "name": "تسجيل المولود في الدفاتر",
+          "name_en": "Registering the newborn in the registers",
+          "fee": "مجاناً",
+          "fee_en": "Free"
+        },
+        {
+          "name": "شهادة الميلاد الورقية الأولى",
+          "name_en": "First paper birth certificate",
+          "fee": "مجاناً",
+          "fee_en": "Free",
+          "note": "مختومة ومعاها دفتر التطعيمات الإجبارية للطفل، من مكتب الصحة.",
+          "note_en": "Stamped and issued with the child's compulsory vaccination booklet, from the health office."
+        },
+        {
+          "name": "شهادة الميلاد المميكنة",
+          "name_en": "Computerised birth certificate",
+          "fee": "حوالي 45 جنيه",
+          "fee_en": "About EGP 45",
+          "note": "خدمة منفصلة، تُستخرج من مكاتب السجل المدني بعد التسجيل.",
+          "note_en": "A separate service, issued by Civil Registry offices after registration."
+        }
+      ]
+    },
+    {
+      "id": "ownership_transfer",
+      "kind": "formula",
+      "title": "الرسوم",
+      "title_en": "Fees",
+      "formula": "2% من قيمة السيارة + مصاريف إدارية",
+      "formula_en": "2% of the vehicle's value, plus administrative charges"
+    }
+  ],
+
+  "services": [
+    {
+      "id": "national_id_first_time",
+      "officeIds": ["civil_registry"],
+      "feeSetId": "national_id_forms",
+      "timing": {
+        "inOffice": {
+          "value": "15 – 30 دقيقة في الفئات السريعة، و30 دقيقة – ساعة في الفئات التقليدية",
+          "value_en": "15 – 30 minutes on the fast tiers; 30 minutes – 1 hour on the traditional tiers",
+          "note": "الفئات التقليدية بتعتمد على طابور التصوير والزحام في مكتب السجل المدني التابع لمحل إقامتك.",
+          "note_en": "The traditional tiers depend on the photography queue and how busy the Civil Registry office for your address is that day."
+        }
+      }
+    },
+    {
+      "id": "national_id_renewal",
+      "officeIds": ["civil_registry"],
+      "feeSetId": "national_id_forms",
+      "timing": {
+        "inOffice": {
+          "value": "15 – 30 دقيقة في الفئات السريعة، و30 دقيقة – ساعة في الفئات التقليدية",
+          "value_en": "15 – 30 minutes on the fast tiers; 30 minutes – 1 hour on the traditional tiers"
+        }
+      },
+      "deadline": {
+        "title": "غرامة تأخير على البطاقة المنتهية",
+        "title_en": "Late fine on an expired card",
+        "body": "لو تأخرت عن تجديد البطاقة المنتهية بعد المهلة القانونية، أو عن تحديث بياناتك، بتُفرض غرامة تأخير إدارية.",
+        "body_en": "If you renew an expired card after the legal grace period, or delay updating your data, an administrative late fine is applied."
+      }
+    },
+    {
+      "id": "national_id_replacement_lost",
+      "officeIds": ["civil_registry"],
+      "feeSetId": "national_id_forms",
+      "timing": {
+        "inOffice": {
+          "value": "15 – 30 دقيقة في الفئات السريعة، و30 دقيقة – ساعة في الفئات التقليدية",
+          "value_en": "15 – 30 minutes on the fast tiers; 30 minutes – 1 hour on the traditional tiers"
+        }
+      }
+    },
+    {
+      "id": "passport_adult_first_time",
+      "officeIds": ["passport_office"],
+      "feeSetId": "passport_issue",
+      "timing": {
+        "queue": {
+          "value": "من 30 دقيقة إلى ساعتين",
+          "value_en": "30 minutes to 2 hours",
+          "note": "بتعتمد كلياً على زحام المكتب التابع له وساعة حضورك — الحضور مبكراً بيفرق كتير.",
+          "note_en": "Depends entirely on how busy your local office is and what time you arrive — coming early makes a real difference."
+        },
+        "inOffice": {
+          "value": "15 – 20 دقيقة عند الشباك",
+          "value_en": "15 – 20 minutes at the counter",
+          "note": "مراجعة الأوراق، دفع الرسوم، وأخذ البصمة والصورة.",
+          "note_en": "Reviewing your papers, paying the fees, and capturing your fingerprint and photograph."
+        }
+      }
+    },
+    {
+      "id": "passport_child",
+      "officeIds": ["passport_office"],
+      "timing": {
+        "queue": {
+          "value": "من 30 دقيقة إلى ساعتين",
+          "value_en": "30 minutes to 2 hours",
+          "note": "بتعتمد على زحام المكتب وساعة حضورك.",
+          "note_en": "Depends on how busy the office is and what time you arrive."
+        }
+      }
+    },
+    {
+      "id": "passport_replacement_lost",
+      "officeIds": ["passport_office"],
+      "feeSetId": "passport_lost",
+      "timing": {
+        "queue": {
+          "value": "من 30 دقيقة إلى ساعتين",
+          "value_en": "30 minutes to 2 hours"
+        },
+        "inOffice": {
+          "value": "15 – 20 دقيقة عند الشباك",
+          "value_en": "15 – 20 minutes at the counter"
+        }
+      }
+    },
+    {
+      "id": "driving_license_first_time",
+      "officeIds": ["traffic_unit"],
+      "feeSetId": "driving_license_first",
+      "timing": {
+        "inOffice": {
+          "value": "من 3 إلى 5 ساعات في نفس اليوم",
+          "value_en": "3 to 5 hours, all in one day",
+          "note": "لإنهاء الإجراءات الطبية، سداد الرسوم، ودخول اختبارات الإشارات والقيادة.",
+          "note_en": "To complete the medical steps, pay the fees, and sit the signals and driving tests."
+        },
+        "completion": {
+          "value": "تُطبَع الرخصة وتُستلَم في نفس اليوم",
+          "value_en": "The licence is printed and collected the same day",
+          "note": "بعد اجتياز الاختبارات والتصوير، خلال ساعات قليلة وبدون انتظار أيام.",
+          "note_en": "After passing the tests and being photographed — within a few hours, with no need to wait days."
+        }
+      },
+      "steps": [
+        {
+          "title": "اشترِ نموذج 256 من الخزينة واملأ بياناتك",
+          "title_en": "Buy form 256 from the cashier and fill in your details"
+        },
+        {
+          "title": "توجَّه لعيادة المرور للكشف الطبي",
+          "title_en": "Go to the traffic clinic for the medical examination",
+          "detail": "كشف نظر وباطنة، وتحديد فصيلة الدم.",
+          "detail_en": "Eyesight and general examination, plus your blood type."
+        },
+        {
+          "title": "افتح الملف عند الموظف",
+          "title_en": "Open your file with the clerk",
+          "detail": "مراجعة أوراقك وتحديد الالتحاق بمدرسة القيادة بالمرور لإتمام الإجراءات.",
+          "detail_en": "Your papers are reviewed and your enrolment in the traffic driving school is arranged."
+        },
+        {
+          "title": "ادفع الرسوم والضرائب المقررة في الخزينة",
+          "title_en": "Pay the prescribed fees and taxes at the cashier"
+        },
+        {
+          "title": "ادخل اختبار الإشارات النظري، وبعده الاختبار العملي",
+          "title_en": "Sit the theoretical signals test, then the practical test",
+          "detail": "الاختبار النظري على الكمبيوتر، وبمجرد نجاحك تنتقل فوراً لاختبار قيادة السيارة.",
+          "detail_en": "The theory test is on a computer; as soon as you pass you move straight to the driving test."
+        },
+        {
+          "title": "التصوير واستلام الرخصة",
+          "title_en": "Photograph and licence collection",
+          "detail": "بعد الاجتياز بنجاح، يتم تصويرك داخل الوحدة وطباعة الرخصة واستلامها في نفس اليوم.",
+          "detail_en": "Once you have passed, you are photographed at the unit and the licence is printed and handed over the same day."
+        }
+      ],
+      "tip": {
+        "body": "لو عايز توفّر وقت انتظار، راجع بوابة مرور مصر الإلكترونية لمعرفة إن كانت وحدتك تدعم حجز موعد مسبق.",
+        "body_en": "To save queueing time, check the Egypt traffic e-portal to see whether your unit supports booking an appointment in advance."
+      }
+    },
+    {
+      "id": "vehicle_license_renewal",
+      "officeIds": ["traffic_unit"],
+      "groups": [
+        {
+          "id": "driving",
+          "label": "رخصة القيادة",
+          "label_en": "Driver's licence",
+          "feeSetId": "driving_license_renewal",
+          "deadline": {
+            "title": "مهلة التجديد 30 يوماً",
+            "title_en": "30-day renewal grace period",
+            "body": "مهلة تجديد الرخصة 30 يوماً (شهر سماح) من تاريخ انتهائها. لو تجاوزت المهلة، تُفرض غرامة تأخير وتُطبَّق مخالفة القيادة برخصة منتهية.",
+            "body_en": "You have 30 days' grace from the expiry date to renew. Beyond that a late fine is applied, along with a violation for driving on an expired licence."
+          }
+        },
+        {
+          "id": "vehicle",
+          "label": "رخصة السيارة",
+          "label_en": "Vehicle licence",
+          "unknownFees": true,
+          "note": "رسوم تجديد رخصة السيارة مش موجودة في بياناتنا. المستندات المطلوبة موضحة في القائمة فوق، ومنها الفحص الفني ووثيقة التأمين الإجباري.",
+          "note_en": "Vehicle licence renewal fees are not in our data. The required documents are listed above, including the technical inspection and the compulsory insurance policy."
+        }
+      ],
+      "timing": {
+        "inOffice": {
+          "value": "بتعتمد على زحام وحدتك وتوقيت حضورك",
+          "value_en": "Depends on how busy your unit is and what time you arrive"
+        }
+      }
+    },
+    {
+      "id": "newborn_registration",
+      "officeIds": ["health_office"],
+      "feeSetId": "newborn_registration",
+      "timing": {
+        "queue": {
+          "value": "من 15 إلى 45 دقيقة",
+          "value_en": "15 to 45 minutes",
+          "note": "حسب كثافة المكتب والمنطقة — الأفضل تروح حوالي 8:30 صباحاً.",
+          "note_en": "Depending on how busy the office and the area are — arriving around 8:30 AM is best."
+        },
+        "inOffice": {
+          "value": "من 10 إلى 20 دقيقة أمام الموظف",
+          "value_en": "10 to 20 minutes with the clerk",
+          "note": "مراجعة الأوراق، كتابة البيانات في الدفاتر الرسمية، وأخذ بصمة قدم المولود بالحبر.",
+          "note_en": "Reviewing the papers, entering the details in the official registers, and taking the newborn's inked footprint."
+        }
+      },
+      "deadline": {
+        "title": "سجّل المولود خلال 15 يوماً",
+        "title_en": "Register the newborn within 15 days",
+        "body": "لازم تبلّغ مكتب الصحة وتسجّل المولود خلال 15 يوماً من تاريخ الولادة. لو تجاوزت المدة، تُفرض غرامة تأخير إدارية وتلزمك إجراءات إضافية في السجل المدني.",
+        "body_en": "You must notify the health office and register the newborn within 15 days of the birth. Past that, an administrative late fine is applied and extra procedures at the Civil Registry become necessary."
+      }
+    },
+    {
+      "id": "vehicle_ownership_transfer",
+      "officeIds": ["real_estate_registry", "traffic_unit"],
+      "feeSetId": "ownership_transfer",
+      "timing": {
+        "queue": {
+          "value": "من 30 إلى 90 دقيقة",
+          "value_en": "30 to 90 minutes"
+        },
+        "completion": {
+          "value": "قد يستغرق من أيام إلى أسابيع",
+          "value_en": "May take anywhere from days to weeks"
+        }
+      }
+    }
+  ]
+}

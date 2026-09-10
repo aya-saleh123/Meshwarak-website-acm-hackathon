@@ -10,7 +10,7 @@ import { DocumentChecklist } from '../components/DocumentChecklist'
 import { StepsTimeline } from '../components/StepsTimeline'
 import {
   ConditionalDocuments,
-  MissingInfoPanel,
+  ServiceInfoPanel,
   ServiceNotes,
 } from '../components/ServiceExtras'
 import { PlacePanel } from '../components/PlacePanel'
@@ -21,7 +21,7 @@ import { useApp } from '../context/AppContext'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 import { getService, relatedServices } from '../lib/services'
-import { AR_CONTENT, countLabel } from '../lib/format'
+import { contentProps, countLabel, pick } from '../lib/format'
 import { googleMapsSearchUrl, officeQuery } from '../lib/links'
 import { AREAS, findArea } from '../data/areas'
 import type { ContributionType } from '../lib/types'
@@ -52,7 +52,7 @@ export function ServiceDetail() {
 
   useDocumentTitle(
     service
-      ? `${service.name} · ${lang === 'ar' ? 'مشوارك' : 'me4warak'}`
+      ? `${pick(service.name, lang)} · ${lang === 'ar' ? 'مشوارك' : 'me4warak'}`
       : t('detail.notFound.title'),
   )
 
@@ -122,13 +122,10 @@ export function ServiceDetail() {
               { label: t('nav.home'), to: '/' },
               { label: t('detail.back'), to: '/services' },
               {
-                label:
-                  lang === 'ar'
-                    ? service.category.nameAr
-                    : service.category.nameEn,
+                label: pick(service.category.name, lang),
                 to: `/services?category=${service.category.slug}`,
               },
-              { label: service.name },
+              { label: pick(service.name, lang) },
             ]}
           />
 
@@ -137,19 +134,17 @@ export function ServiceDetail() {
               <Icon name={service.category.icon} size={26} />
             </span>
             <div>
-              <h1 className="service-hero__title" {...AR_CONTENT}>
-                {service.name}
+              <h1 className="service-hero__title" {...contentProps(lang)}>
+                {pick(service.name, lang)}
               </h1>
               <div className="service-hero__meta">
                 <Badge tone={service.category.tone} dot>
-                  {lang === 'ar'
-                    ? service.category.nameAr
-                    : service.category.nameEn}
+                  {pick(service.category.name, lang)}
                 </Badge>
                 {service.authorities.map((authority) => (
-                  <Badge variant="plain" key={authority}>
+                  <Badge variant="plain" key={authority.ar}>
                     <Icon name="pin" size={13} />
-                    <span {...AR_CONTENT}>{authority}</span>
+                    <span {...contentProps(lang)}>{pick(authority, lang)}</span>
                   </Badge>
                 ))}
                 <Badge variant="plain">
@@ -177,7 +172,7 @@ export function ServiceDetail() {
               <a
                 className={btnClass('primary', 'sm')}
                 href={googleMapsSearchUrl(
-                  officeQuery(service.authorities[0], area),
+                  officeQuery(service.authorities[0].ar, area),
                 )}
                 target="_blank"
                 rel="noreferrer noopener"
@@ -239,7 +234,10 @@ export function ServiceDetail() {
                 <ConditionalDocuments service={service} />
                 <ServiceNotes service={service} />
                 <StepsTimeline service={service} />
-                <MissingInfoPanel onContribute={() => openContribution('hours')} />
+                <ServiceInfoPanel
+                  service={service}
+                  onContribute={() => openContribution('hours')}
+                />
               </>
             )}
 
@@ -267,11 +265,7 @@ export function ServiceDetail() {
         >
           <div className="container">
             <div className="section-head">
-              <span className="eyebrow">
-                {lang === 'ar'
-                  ? service.category.nameAr
-                  : service.category.nameEn}
-              </span>
+              <span className="eyebrow">{pick(service.category.name, lang)}</span>
               <h2 id="related-heading">{t('detail.related.title')}</h2>
             </div>
             <div className="grid--centered">

@@ -3,6 +3,7 @@ import { Icon } from './Icon'
 import { Logo } from './Logo'
 import { useApp } from '../context/AppContext'
 import { CATEGORY_GROUPS } from '../lib/services'
+import { pick } from '../lib/format'
 
 export function Footer() {
   const { t, lang } = useApp()
@@ -44,7 +45,7 @@ export function Footer() {
             {CATEGORY_GROUPS.map(({ category }) => (
               <li key={category.id}>
                 <Link to={`/services?category=${category.slug}`}>
-                  {lang === 'ar' ? category.nameAr : category.nameEn}
+                  {pick(category.name, lang)}
                 </Link>
               </li>
             ))}

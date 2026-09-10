@@ -721,6 +721,12 @@
   .info-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  /* The odd card out in a 2-column grid spans the full row instead of
+     leaving an empty cell dangling next to it. */
+  .info-tile--span2 {
+    grid-column: 1 / -1;
+  }
 }
 
 .info-tile {
@@ -728,6 +734,12 @@
   border: 1px dashed var(--border);
   border-radius: var(--r-md);
   background: var(--surface-muted);
+}
+
+.info-tile__field + .info-tile__field {
+  margin-block-start: var(--sp-3);
+  padding-block-start: var(--sp-3);
+  border-block-start: 1px dashed var(--border);
 }
 
 .info-tile__label {
@@ -740,9 +752,25 @@
 }
 
 .info-tile__value {
+  display: block;
   margin-block-start: var(--sp-1);
   font-size: var(--fs-sm);
   font-weight: 600;
+  color: var(--text-muted);
+}
+
+.info-tile__note {
+  display: block;
+  margin-block-start: var(--sp-1);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.info-tile__unknown {
+  display: block;
+  margin-block-start: var(--sp-1);
+  font-size: var(--fs-sm);
+  font-style: italic;
   color: var(--text-muted);
 }
 

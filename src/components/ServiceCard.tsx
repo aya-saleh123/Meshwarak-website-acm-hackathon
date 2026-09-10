@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Icon } from './Icon'
 import { Badge } from './Badge'
 import { useApp } from '../context/AppContext'
-import { AR_CONTENT, countLabel } from '../lib/format'
+import { contentProps, countLabel, pick } from '../lib/format'
 import type { Service } from '../lib/types'
 
 /**
@@ -29,21 +29,21 @@ export function ServiceCard({
         <span className="icon-tile icon-tile--sm" aria-hidden="true">
           <Icon name={service.category.icon} size={18} />
         </span>
-        <h3 className="service-card__title" {...AR_CONTENT}>
-          {service.name}
+        <h3 className="service-card__title" {...contentProps(lang)}>
+          {pick(service.name, lang)}
         </h3>
       </div>
 
       {service.authorities.length > 0 && (
-        <p className="text-sm text-secondary" style={{ margin: 0 }} {...AR_CONTENT}>
-          {service.authorities.join(' + ')}
+        <p className="text-sm text-secondary" style={{ margin: 0 }} {...contentProps(lang)}>
+          {service.authorities.map((a) => pick(a, lang)).join(' + ')}
         </p>
       )}
 
       <div className="service-card__meta">
         {showCategory && (
           <Badge tone={service.category.tone} dot>
-            {lang === 'ar' ? service.category.nameAr : service.category.nameEn}
+            {pick(service.category.name, lang)}
           </Badge>
         )}
         <Badge variant="plain">{countLabel(docCount, 'document', lang)}</Badge>

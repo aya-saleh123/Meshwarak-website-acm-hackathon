@@ -10,7 +10,7 @@ import { Notice } from '../components/Notice'
 import { useApp } from '../context/AppContext'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { CATEGORY_GROUPS, SERVICES, TOTALS } from '../lib/services'
-import { countLabel, nounFor } from '../lib/format'
+import { countLabel, nounFor, pick } from '../lib/format'
 
 /** Keep the homepage short — the full catalogue lives on /services. */
 const HOME_SERVICE_LIMIT = 6
@@ -66,7 +66,7 @@ export function Home() {
                 className="chip"
               >
                 <Icon name={category.icon} size={15} />
-                {lang === 'ar' ? category.nameAr : category.nameEn}
+                {pick(category.name, lang)}
               </Link>
             ))}
           </div>

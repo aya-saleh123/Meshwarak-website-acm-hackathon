@@ -13,7 +13,7 @@ import {
   getCategoryBySlug,
   searchServices,
 } from '../lib/services'
-import { countLabel } from '../lib/format'
+import { countLabel, pick } from '../lib/format'
 
 export function Services() {
   const { t, lang } = useApp()
@@ -87,18 +87,10 @@ export function Services() {
             ]}
           />
           <h1 className="page-head__title">
-            {activeCategory
-              ? lang === 'ar'
-                ? activeCategory.nameAr
-                : activeCategory.nameEn
-              : t('services.title')}
+            {activeCategory ? pick(activeCategory.name, lang) : t('services.title')}
           </h1>
           <p>
-            {activeCategory
-              ? lang === 'ar'
-                ? activeCategory.hintAr
-                : activeCategory.hintEn
-              : t('services.sub')}
+            {activeCategory ? pick(activeCategory.hint, lang) : t('services.sub')}
           </p>
         </div>
       </div>
@@ -132,7 +124,7 @@ export function Services() {
                   onClick={() => setCategory(category.slug)}
                 >
                   <Icon name={category.icon} size={15} />
-                  {lang === 'ar' ? category.nameAr : category.nameEn}
+                  {pick(category.name, lang)}
                   <span className="chip__count">{services.length}</span>
                 </button>
               ))}
@@ -200,9 +192,7 @@ export function Services() {
                   >
                     <Icon name={category.icon} size={18} />
                   </span>
-                  <h2 id={`cat-${category.slug}`}>
-                    {lang === 'ar' ? category.nameAr : category.nameEn}
-                  </h2>
+                  <h2 id={`cat-${category.slug}`}>{pick(category.name, lang)}</h2>
                   <span className="text-xs text-muted">
                     {countLabel(services.length, 'service', lang)}
                   </span>

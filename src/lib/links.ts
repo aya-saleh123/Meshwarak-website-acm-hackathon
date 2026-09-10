@@ -12,7 +12,3 @@ export function officeQuery(authority: string | undefined, area: Area | undefine
 export function googleMapsSearchUrl(query: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
 }
-
-export function osmSearchUrl(query: string): string {
-  return `https://www.openstreetmap.org/search?query=${encodeURIComponent(query)}`
-}
