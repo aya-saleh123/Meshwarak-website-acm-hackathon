@@ -138,7 +138,7 @@ Instead:
 
 ---
 
-## Design system
+## Design ٍٍSystem
 
 `src/styles/tokens.css` is a direct transcription of `style.md`: Nile teal
 brand ramp, papyrus/sand backgrounds, Egyptian gold / red / blue / family-teal
@@ -166,6 +166,8 @@ variants were cropped from `logo.jpeg` into `public/brand/`:
 
 The gold hairline in `.eyebrow` and the faint gold dot field behind the hero
 echo the dashes in the wordmark — the only decorative flourishes in the app.
+
+![Meshwarak Website](docs/images/brand_identity.png)
 
 ---
 
