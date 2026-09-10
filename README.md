@@ -8,6 +8,7 @@ Meshwarak turns a complicated government errand into a clear, step-by-step plan,
 
 Hackathon prototype — frontend only. No backend, no accounts, and no user tracking.
 
+![Meshwarak Website](docs/images/overview.png)
 ---
 
 ## Quick start
